@@ -1,0 +1,4 @@
+[submodule "themes/hugo-theme-stack"]
+	path = themes/hugo-theme-stack
+	url = https://github.com/weeix/hugo-theme-stack.git
+	branch = ahead-of-upstream
