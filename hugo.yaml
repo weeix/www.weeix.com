@@ -1,4 +1,49 @@
-baseURL: https://example.org/
-languageCode: en-us
-title: My New Hugo Site
+languageCode: th
+params:
+  Sidebar:
+    subtitle: เป็นบล็อกเกี่ยวกับเทคโนโลยี การทำเว็บ การเขียนโค้ด/สคริปต์ ฯลฯ
+    avatar:
+      enabled: true
+      src: /img/avatar.png
+  DateFormat:
+    published: 2 January 2006
+    lastUpdated: 2 January 2006 15:04 MST
+  mainSections:
+    - posts
+  widgets:
+    homepage:
+      - type: search
+      - type: categories
+      - type: tag-cloud
+    page:
+      - type: toc
+permalinks:
+  pages: /:slug/
 theme: hugo-theme-stack
+defaultContentLanguage: th
+title: weeix
+imaging:
+  resampleFilter: MitchellNetravali
+baseURL: https://www.weeix.com/
+menu:
+  social:
+    - identifier: facebook
+      name: Facebook
+      url: https://www.facebook.com/weeix
+      params:
+        icon: brand-facebook
+    - identifier: github
+      name: GitHub
+      url: https://github.com/weeix
+      params:
+        icon: brand-github
+    - identifier: email
+      name: Email
+      url: mailto:weeaix@gmail.com
+      params:
+        icon: mail
+    - identifier: rss
+      name: RSS
+      url: /index.xml
+      params:
+        icon: rss
