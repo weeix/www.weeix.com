@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Content Manager</title>
+</head>
+
+<body>
+    <!-- Include the script that builds the page and powers Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+        CMS.registerEditorComponent({
+            id: "youtube",
+            label: "YouTube",
+            fields: [
+                {
+                    name: 'video_id',
+                    label: 'Video ID',
+                    widget: 'string'
+                }
+            ],
+            pattern: /^{{<\s*?youtube\s+?(.*?)\s*?>}}$/m,
+            fromBlock: function(match) {
+                return {
+                    video_id: match[1]
+                };
+            },
+            toBlock: function(data) {
+                return `{{< youtube ${data.video_id} >}}`;
+            },
+            toPreview: function(data) {
+                return `
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${data.video_id}"
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                `;
+            }
+        });
+        CMS.registerEditorComponent({
+            id: "gist",
+            label: "Gist",
+            fields: [
+                {
+                    name: 'username',
+                    label: 'Username',
+                    widget: 'string'
+                },
+                {
+                    name: 'gist_id',
+                    label: 'Gist ID',
+                    widget: 'string'
+                },
+                {
+                    name: 'filename',
+                    label: 'Filename',
+                    widget: 'string',
+                    required: false
+                }
+            ],
+            pattern: /^{{<\s*?gist\s+?(.*?)\s+?(.*?)(?:\s+?(.*?))?\s*?>}}$/m,
+            fromBlock: function(match) {
+                return {
+                    username: match[1],
+                    gist_id: match[2],
+                    filename: match[3]
+                };
+            },
+            toBlock: function(data) {
+                const filename = (data.filename.length > 0)? ' ' + data.filename : '';
+                return `{{< gist ${data.username} ${data.gist_id}${filename} >}}`;
+            },
+            toPreview: function(data) {
+                const filename = (data.filename.length > 0)? '#file-' + data.filename.replace('.', '-') : '';
+                const url = `https://gist.github.com/${data.username}/${data.gist_id}${filename}`;
+                return `
+                <a href="${url}">${url}</a>
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>

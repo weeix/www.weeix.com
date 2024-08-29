@@ -1,0 +1,285 @@
+site_url: https://www.weeix.com
+backend:
+  name: github
+  branch: main
+  repo: weeix/www.weeix.com
+  base_url: https://decap.weeix.com
+
+local_backend: true
+
+media_folder: assets/uploads
+public_folder: /uploads
+
+locale: th
+
+collections:
+  - name: posts
+    label: โพสต์
+    folder: content/posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    path: "{{slug}}/index"
+    media_folder: images
+    fields:
+      - { label: ชื่อเรื่อง, name: title, widget: string }
+      - { label: slug, name: slug, widget: string }
+      - { label: วันที่เผยแพร่, name: date, widget: datetime, format: YYYY-MM-DD HH:mm:ss ZZ }
+      - { label: วันที่ปรับปรุงล่าสุด, name: lastmod, widget: datetime, format: YYYY-MM-DD HH:mm:ss ZZ, required: false }
+      - { label: คำอธิบาย, name: description, widget: string }
+      - label: หมวดหมู่
+        name: categories
+        widget: relation
+        collection: categories
+        value_field: title
+        search_fields:
+          - title
+        required: false
+      - label: แท็ก
+        name: tags
+        widget: relation
+        collection: tags
+        value_field: title
+        search_fields:
+          - title
+        multiple: true
+        required: false
+      - label: รูปประจำเรื่อง
+        name: image
+        widget: image
+        required: false
+      - { label: เนื้อหา, name: body, widget: markdown }
+  - name: pages
+    label: หน้า
+    folder: content/pages
+    create: true
+    slug: "{{fields.slug}}"
+    path: "{{slug}}/index"
+    fields:
+      - { label: ชื่อเรื่อง, name: title, widget: string }
+      - { label: slug, name: slug, widget: string }
+      - { label: ชนิด, name: type, widget: hidden, default: page}
+      - { label: แสดงเวลาที่ใช้อ่าน, name: readingTime, widget: hidden, default: false}
+      - label: โครงสร้างหน้า
+        name: layout
+        widget: select
+        options:
+          - { label: หมวดหมู่, value: archives }
+          - { label: ค้นหา, value: search }
+        required: false
+      - label: รูปประจำเรื่อง
+        name: image
+        widget: image
+        required: false
+      - label: เมนู
+        name: menu
+        widget: object
+        collapsed: true
+        fields:
+          - label: เมนูหลัก
+            name: main
+            widget: object
+            fields:
+              - label: น้ำหนัก
+                name: weight
+                widget: number
+                value_type: int
+                required: false
+              - label: พารามิเตอร์
+                name: params
+                widget: object
+                fields:
+                  - label: ไอคอน
+                    name: icon
+                    widget: string
+                    default: hash
+                    required: false
+      - { label: เนื้อหา, name: body, widget: markdown }
+  - name: categories
+    label: หมวดหมู่
+    folder: content/categories
+    create: true
+    editor:
+      preview: false
+    slug: "{{slug}}"
+    path: "{{slug}}/_index"
+    fields:
+      - label: ชื่อ
+        name: title
+        widget: string
+      - label: slug
+        name: slug
+        widget: string
+      - label: ชื่ออื่น
+        name: aliases
+        widget: list
+        required: false
+      - label: คำอธิบาย
+        name: description
+        widget: string
+        required: false
+  - name: tags
+    label: แท็ก
+    folder: content/tags
+    create: true
+    editor:
+      preview: false
+    slug: "{{slug}}"
+    path: "{{slug}}/_index"
+    fields:
+      - label: ชื่อ
+        name: title
+        widget: string
+      - label: คำอธิบาย
+        name: description
+        widget: string
+        required: false
+  - name: configurations
+    label: การตั้งค่า
+    files:
+      - label: การตั้งค่าเว็บไซต์
+        name: config
+        file: hugo.yaml
+        editor:
+          preview: false
+        fields:
+          - { label: ชื่อเว็บ, name: title, widget: string }
+          - label: เมนู
+            name: menu
+            widget: object
+            fields:
+              - label: สื่อสังคมออนไลน์
+                name: social
+                widget: list
+                fields:
+                  - { label: รหัส, name: identifier, widget: string }
+                  - { label: ชื่อ, name: name, widget: string }
+                  - { label: URL, name: url, widget: string }
+                  - label: พารามิเตอร์
+                    name: params
+                    widget: object
+                    fields:
+                      - { label: ไอคอน, name: icon, widget: string }
+          - label: พารามิเตอร์
+            name: params
+            widget: object
+            fields:
+              - label: แถบด้านข้าง
+                name: Sidebar
+                widget: object
+                fields:
+                  - { label: คำอธิบายเว็บ, name: subtitle, widget: string }
+                  - label: รูปประจำตัว
+                    name: avatar
+                    widget: object
+                    fields:
+                      - { label: เปิดใช้งาน, name: enabled, widget: boolean, default: true }
+                      - label: ที่อยู่รูปภาพ
+                        name: src
+                        widget: image
+                        default: /img/avatar.png
+                        media_folder: /assets/img
+                        public_folder: /img
+              - label: รูปแบบวันที่
+                name: DateFormat
+                widget: object
+                fields:
+                  - { label: วันที่เผยแพร่, name: published, widget: string }
+                  - { label: วันที่ปรับปรุงล่าสุด, name: lastUpdated, widget: string }
+              - label: วิดเจ็ต
+                name: widgets
+                widget: object
+                fields:
+                  - label: หน้าแรก
+                    name: homepage
+                    widget: list
+                    types:
+                      - label: คลังบทความ
+                        name: archives
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
+                      - label: ค้นหา
+                        name: search
+                        widget: object
+                        fields:
+                          - { name: enabled, widget: hidden, default: true }
+                      - label: หมวดหมู่
+                        name: categories
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
+                      - label: สารบัญ
+                        name: toc
+                        widget: object
+                        fields:
+                          - { name: enabled, widget: hidden, default: true }
+                      - label: แท็ก
+                        name: tag-cloud
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
+                  - label: หน้า
+                    name: page
+                    widget: list
+                    types:
+                      - label: คลังบทความ
+                        name: archives
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
+                      - label: ค้นหา
+                        name: search
+                        widget: object
+                        fields:
+                          - { name: enabled, widget: hidden, default: true }
+                      - label: หมวดหมู่
+                        name: categories
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
+                      - label: สารบัญ
+                        name: toc
+                        widget: object
+                        fields:
+                          - { name: enabled, widget: hidden, default: true }
+                      - label: แท็ก
+                        name: tag-cloud
+                        widget: object
+                        fields:
+                          - label: จำนวนรายการที่แสดง
+                            name: limit
+                            widget: number
+                            min: 0
+                            max: 100
+                            default: 10
+                            required: false
