@@ -3,7 +3,10 @@ backend:
   name: github
   branch: main
   repo: weeix/www.weeix.com
+  squash_merges: true
   base_url: https://decap.weeix.com
+
+publish_mode: editorial_workflow
 
 local_backend: true
 
