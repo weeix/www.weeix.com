@@ -8,6 +8,9 @@ params:
   DateFormat:
     published: 2 January 2006
     lastUpdated: 2 January 2006 15:04 MST
+  comments:
+    enabled: true
+    provider: disqus
   mainSections:
     - posts
   widgets:
@@ -19,6 +22,9 @@ params:
       - type: toc
 permalinks:
   pages: /:slug/
+services:
+  disqus:
+    shortname: weeix
 theme: hugo-theme-stack
 defaultContentLanguage: th
 title: weeix
