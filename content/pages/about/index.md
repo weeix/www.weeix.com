@@ -6,6 +6,7 @@ aliases:
   - about-us
 readingTime: false
 comments: false
+license: false
 layout: null
 menu:
   main:
