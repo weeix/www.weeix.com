@@ -24,6 +24,11 @@ params:
       - type: tag-cloud
     page:
       - type: toc
+  defaultImage:
+    opengraph:
+      enabled: true
+      local: true
+      src: img/opengraph.png
 permalinks:
   pages: /:slug/
 services:
