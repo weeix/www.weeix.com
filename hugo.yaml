@@ -34,6 +34,8 @@ permalinks:
 services:
   disqus:
     shortname: weeix
+  googleAnalytics:
+    ID: G-1J568LTXJR
 theme: hugo-theme-stack
 defaultContentLanguage: th
 title: weeix
