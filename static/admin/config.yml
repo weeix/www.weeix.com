@@ -168,6 +168,16 @@ collections:
             name: params
             widget: object
             fields:
+              - label: บทความ
+                name: Article
+                widget: object
+                fields:
+                  - label: สัญญาอนุญาต
+                    name: license
+                    widget: object
+                    fields:
+                      - { label: เปิดใช้งาน, name: enabled, widget: boolean, default: true }
+                      - { label: ข้อความตั้งต้น, name: default, widget: string }
               - label: แถบด้านข้าง
                 name: Sidebar
                 widget: object

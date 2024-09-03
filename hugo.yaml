@@ -1,5 +1,9 @@
 languageCode: th
 params:
+  Article:
+    license:
+      enabled: true
+      default: ได้รับอนุญาตภายใต้สัญญา CC BY-NC-SA 4.0
   Sidebar:
     subtitle: เป็นบล็อกเกี่ยวกับเทคโนโลยี การทำเว็บ การเขียนโค้ด/สคริปต์ ฯลฯ
     avatar:
