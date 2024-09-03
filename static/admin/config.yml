@@ -29,6 +29,7 @@ collections:
       - { label: วันที่เผยแพร่, name: date, widget: datetime, format: YYYY-MM-DD HH:mm:ss ZZ }
       - { label: วันที่ปรับปรุงล่าสุด, name: lastmod, widget: datetime, format: YYYY-MM-DD HH:mm:ss ZZ, required: false }
       - { label: คำอธิบาย, name: description, widget: string }
+      - { label: เปิดให้แสดงความคิดเห็น, name: comments, widget: boolean, default: true}
       - label: หมวดหมู่
         name: categories
         widget: relation
@@ -62,6 +63,7 @@ collections:
       - { label: slug, name: slug, widget: string }
       - { label: ชนิด, name: type, widget: hidden, default: page}
       - { label: แสดงเวลาที่ใช้อ่าน, name: readingTime, widget: hidden, default: false}
+      - { label: เปิดให้แสดงความคิดเห็น, name: comments, widget: boolean, default: false}
       - label: โครงสร้างหน้า
         name: layout
         widget: select
