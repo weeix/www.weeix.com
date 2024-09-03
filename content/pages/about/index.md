@@ -5,6 +5,7 @@ type: page
 aliases:
   - about-us
 readingTime: false
+comments: false
 layout: null
 menu:
   main:
