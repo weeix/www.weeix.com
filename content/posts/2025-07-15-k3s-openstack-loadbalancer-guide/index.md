@@ -141,7 +141,7 @@ sudo kubectl create secret -n kube-system generic cloud-config --from-file=cloud
 
 ### ขั้นตอนที่ 4: ติดตั้ง OpenStack Cloud Controller Manager
 
-เราสามารถติดตั้งได้จาก Manifest หรือ Helm Chart ของ Official Repository ซึ่งในที่นี้จะใช้ Manifest เพราะขี้เกียจติดตั้ง Helm:
+เราสามารถติดตั้งได้จาก [Manifest](https://github.com/kubernetes/cloud-provider-openstack/tree/master/manifests/controller-manager) หรือ [Helm Chart](https://github.com/kubernetes/cloud-provider-openstack/tree/master/charts/openstack-cloud-controller-manager) ใน Official Repository ซึ่งในที่นี้จะใช้ Manifest เพราะผู้เขียนขี้เกียจติดตั้ง Helm:
 
 ```shell
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-openstack/refs/tags/v1.32.0/manifests/controller-manager/cloud-controller-manager-roles.yaml
@@ -149,11 +149,13 @@ sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provide
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-openstack/refs/tags/v1.32.0/manifests/controller-manager/openstack-cloud-controller-manager-ds.yaml
 ```
 
-**หมายเหตุ:** ds ในชื่อไฟล์ย่อมาจาก DaemonSet ซึ่งหมายความว่า Controller Manager จะถูกติดตั้งลงบนโนดควบคุม (master node) ทุก ๆ โนด
+**หมายเหตุ 1:** แก้ไขเวอร์ชันให้ใกล้เคียงกับเวอร์ชันของ Kubernetes ที่เราใช้ ในที่นี้ผู้เขียนใช้ Kubernetes 1.32.6 จึงใช้ v1.32.0 โดยสามารถดูเวอร์ชันที่มีได้จาก[หน้า release ของ Official Repository](https://github.com/kubernetes/cloud-provider-openstack/releases) 
+
+**หมายเหตุ 2:** ds ในชื่อไฟล์ย่อมาจาก DaemonSet ซึ่งหมายความว่า Controller Manager จะถูกติดตั้งลงบนโนดควบคุม (master node) ทุก ๆ โนด
 
 ### ขั้นตอนที่ 5: แก้ไข DaemonSet ให้รู้จัก k3s
 
-**อัพเดต:** เห็นว่ามี [Pull Request ที่แก้ nodeSelector ให้เลือก `node-role.kubernetes.io/control-plane=true` แล้ว](https://github.com/kubernetes/cloud-provider-openstack/pull/2902) ถ้าใครใช้ openstack-cloud-controller-manager อาจจะไม่ต้องทำตามขั้นตอนนี้แล้วก็ได้
+**อัพเดต:** เห็นว่ามี [Pull Request ที่แก้ nodeSelector ให้เลือก `node-role.kubernetes.io/control-plane=true` แล้ว](https://github.com/kubernetes/cloud-provider-openstack/pull/2902) ถ้าใครใช้ openstack-cloud-controller-manager รุ่นใหม่ ๆ อาจจะไม่ต้องทำตามขั้นตอนนี้แล้วก็ได้
 
 หลังจากติดตั้งในขั้นตอนที่แล้ว คุณอาจจะพบว่า... ไม่มี Pod ของ openstack-cloud-controller-manager ถูกสร้างขึ้นมาเลย!
 
