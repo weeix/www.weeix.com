@@ -2,8 +2,8 @@
 title: "เชื่อม K3s กับ OpenStack Load Balancer: คู่มือฉบับลุยจริง เจ็บจริง"
 slug: k3s-openstack-loadbalancer-guide
 date: 2025-07-15 21:49:00 +0700
-description: ติดตั้ง k3s บน OpenStack แล้วเจอปัญหา Service type:LoadBalancer
-  ไม่ทำงาน? บทความนี้จะพาคุณลุยทุกขั้นตอนการเชื่อมต่อ k3s กับ OpenStack Load
+description: ติดตั้ง K3s บน OpenStack แล้วเจอปัญหา Service type:LoadBalancer
+  ไม่ทำงาน? บทความนี้จะพาคุณลุยทุกขั้นตอนการเชื่อมต่อ K3s กับ OpenStack Load
   Balancer ผ่าน Cloud Controller Manager
   พร้อมแชร์ปัญหาจริงและวิธีแก้เฉพาะหน้าที่คุณอาจต้องเจอ!
 comments: true
