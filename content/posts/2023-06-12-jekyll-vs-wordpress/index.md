@@ -5,7 +5,8 @@ date: 2023-06-12 22:47:00 +0700
 lastmod: 2024-08-26 20:14:00 +0700
 description: Jekyll มีไว้สร้างเว็บ ซึ่งก็เหมือน WordPress
   ที่มีไว้สร้างเว็บเหมือนกัน แล้วซอฟต์แวร์ 2 ตัวนี้แตกต่างกันยังไงนะ
-categories: technology
+comments: true
+categories: เทคโนโลยี
 tags:
   - jekyll
   - wordpress
