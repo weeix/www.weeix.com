@@ -6,7 +6,8 @@ date: 2023-07-15 21:40:00 +0700
 lastmod: 2024-08-26 23:57:00 +0700
 description: ถ้าต้องเอาข้อมูลจากไฟล์ CSV หรือ Excel ไปกรอกลงเว็บทีละมาก ๆ
   ใช้วิธีนี้อาจช่วยประหยัดเวลาได้ (?!)
-categories: []
+comments: true
+categories: เทคโนโลยี
 tags:
   - browser-automation
   - python
